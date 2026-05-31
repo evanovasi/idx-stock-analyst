@@ -1,0 +1,23 @@
+[
+  {"query": "analisa CUAN dong timeframe harian, ini lagi jeblok parah mau nyangkut apa cut loss", "should_trigger": true},
+  {"query": "bro saham ANTM bagus gak buat masuk minggu depan? udah naik 3 hari berturut", "should_trigger": true},
+  {"query": "tolong reviewin BBCA buat swing 1 bulan, kira-kira target sama stop loss nya di berapa", "should_trigger": true},
+  {"query": "GOTO 1 bulan layak hold gak", "should_trigger": true},
+  {"query": "minta pandangan soal PTRO, ini aku lampirin laporan keuangan Q1 2026 nya", "should_trigger": true},
+  {"query": "aku upload chart TLKM nih, ini breakout beneran atau fakeout ya?", "should_trigger": true},
+  {"query": "entry point ideal BREN sekarang berapa, sekalian cut loss sama take profit", "should_trigger": true},
+  {"query": "is GOTO a buy right now for a 2-week swing trade on IDX?", "should_trigger": true},
+  {"query": "MDKA RSI udah 70 katanya overbought, masih aman masuk gak buat scalping?", "should_trigger": true},
+  {"query": "kasih analisa fundamental plus teknikal AMMN buat keputusan beli atau jual", "should_trigger": true},
+
+  {"query": "apa itu RSI dan gimana cara hitungnya?", "should_trigger": false},
+  {"query": "jelasin secara umum bedanya swing trading sama scalping", "should_trigger": false},
+  {"query": "analisa saham Apple AAPL buat swing trade dong", "should_trigger": false},
+  {"query": "buatin watchlist saham IDX yang yield dividennya paling gede di 2026", "should_trigger": false},
+  {"query": "harga saham BBRI sekarang berapa?", "should_trigger": false},
+  {"query": "cara beli saham pertama kali di aplikasi sekuritas gimana?", "should_trigger": false},
+  {"query": "tolong bikinin spreadsheet portofolio saham aku, kolomnya harga beli sama profit/loss", "should_trigger": false},
+  {"query": "prediksi IHSG besok bakal naik atau turun?", "should_trigger": false},
+  {"query": "ringkas berita ekonomi dan pasar modal Indonesia minggu ini", "should_trigger": false},
+  {"query": "saham gocap yang prospektif buat 2026 apa aja rekomendasinya?", "should_trigger": false}
+]
