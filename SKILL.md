@@ -48,6 +48,11 @@ Priority order: **use what the user gives you first, then fill only the gaps.**
      issuers report in thousands of USD, others in IDR). Reports can be 100+ pages - grep for
      "POSISI KEUANGAN / FINANCIAL POSITION", "LABA RUGI / PROFIT OR LOSS", "ARUS KAS / CASH FLOW",
      "EKUITAS / EQUITY" to locate the statements quickly rather than reading the whole file.
+   - **Posisi aktif (jika ada):** jika user menyebutkan "sudah pegang", "hold atau jual", "harga
+     rata-rataku", atau sejenisnya — catat: harga rata-rata beli (average cost), jumlah lot yang
+     dipegang, dan (opsional) modal total + toleransi rugi per trade. **Jika user bertanya "hold
+     atau jual" tanpa menyebut harga rata-rata, tanya dulu sebelum menganalisis posisi aktif.**
+     Jika user belum pegang (masuk baru), skip section 5 dan lanjut ke analisis biasa.
 
 2. **Web-search ONLY to fill gaps** (this is the hybrid rule - don't re-fetch what the user gave).
    Common gaps worth a search: the current/last price if not provided, recent news and catalysts,
@@ -108,6 +113,12 @@ Decision bands:
   user's. State this plainly, without burying it.
 - **Cite sources.** When any conclusion rests on web-sourced facts (news, prices, corporate
   actions), add a "Sources:" list of links at the end.
+- **Posisi aktif mengubah pertanyaan utama.** Jika user sudah memegang saham, pertanyaan bukan
+  "entry di mana" tapi "tahan, tambah, atau keluar dari posisi yang ada". Section 5 harus
+  menjawab ini secara eksplisit dengan mengacu ke harga rata-rata user — bukan harga entry
+  teoretis. Jika score final SELL tapi user sudah floating profit besar, rekomendasikan profit
+  taking; jika score SELL dan user floating loss, rekomendasikan cut loss dengan level spesifik.
+  Jangan campurkan konteks posisi aktif dengan analisis entry baru.
 
 ## Mandatory output template
 
@@ -138,7 +149,33 @@ breakout/fakeout, trendline - as an | Indikator | Kondisi | Sinyal | table.)
 (Accumulation vs distribution, volume spikes, bandar/insider activity, breakout validity.)
 - Smart Money Score: xx/100
 
-# 5. ANALISIS SWING TRADING
+# 5. MANAJEMEN POSISI AKTIF
+(Bagian ini HANYA muncul jika user sudah memegang saham ini. Skip sepenuhnya jika user masuk baru.)
+| Parameter | Nilai |
+|---|---|
+| Harga Rata-rata Beli | Rp xxx |
+| Harga Saat Ini | Rp xxx |
+| Unrealized P&L | +xx% / -xx% |
+| Status | Floating Profit / Floating Loss / Breakeven |
+| Jumlah Lot Dipegang | xxx lot |
+
+Rekomendasi:
+| Skenario | Aksi | Kondisi Pemicu |
+|---|---|---|
+| Saat ini | HOLD / AVERAGE DOWN / PARTIAL SELL / FULL EXIT | [alasan kuantitatif] |
+| Jika harga turun ke xxx | Cut Loss | Di bawah support / SL xxx |
+| Jika harga naik ke xxx | Partial Profit / Full TP | Resistansi / TP xxx |
+
+Alasan utama: (2–3 poin — mengacu ke Final Score, struktur tren, dan P&L berjalan)
+
+(Tampilkan blok ini hanya jika user menyebutkan modal + toleransi rugi:)
+Position Sizing — Average Down:
+- Modal tersisa    : Rp xxx
+- Risk/trade (xx%) : Rp xxx
+- Jarak ke SL      : xxx poin = Rp xxx/lembar
+- Lot tambahan optimal: xxx lot | Max drawdown tambahan: Rp xxx
+
+# 6. ANALISIS SWING TRADING
 | Strategi Swing | Harga |
 |---|---|
 | Entry | xxx |
@@ -148,7 +185,14 @@ breakout/fakeout, trendline - as an | Indikator | Kondisi | Sinyal | table.)
 | Risk Reward | 1:x |
 - Probabilitas keberhasilan: xx%
 
-# 6. ANALISIS SCALPING
+(Tampilkan blok ini hanya jika user menyebutkan modal + toleransi rugi:)
+Position Sizing — Entry Baru:
+- Modal            : Rp xxx
+- Risk/trade (xx%) : Rp xxx
+- Jarak Entry→SL   : xxx poin = Rp xxx/lembar
+- Lot optimal      : xxx lot | Max drawdown: Rp xxx
+
+# 7. ANALISIS SCALPING
 | Strategi Scalping | Harga |
 |---|---|
 | Quick Entry | xxx |
@@ -156,15 +200,22 @@ breakout/fakeout, trendline - as an | Indikator | Kondisi | Sinyal | table.)
 | Target Cepat | xxx |
 - Scalping Probability Score: xx%
 
-# 7. ANALISIS RISIKO
+(Tampilkan blok ini hanya jika user menyebutkan modal + toleransi rugi:)
+Position Sizing — Scalping:
+- Modal            : Rp xxx
+- Risk/trade (xx%) : Rp xxx
+- Jarak Entry→CL   : xxx poin = Rp xxx/lembar
+- Lot optimal      : xxx lot | Max drawdown: Rp xxx
+
+# 8. ANALISIS RISIKO
 (Volatility/ATR, max drawdown potential, false-breakout risk, correlation risk, event risk.)
 - Risk/Safety Score: xx/100  (higher = safer)
 
-# 8. SKOR FINAL
+# 9. SKOR FINAL
 (Show the weighted table: each pillar x weight = contribution, then the total.)
 - Final Score = xx/100
 
-# 9. KEPUTUSAN FINAL
+# 10. KEPUTUSAN FINAL
 ## FINAL DECISION: BUY / SELL / SKIP
 Alasan utama:
 - poin 1
@@ -184,9 +235,9 @@ AI Confidence Level: xx%
 conflicting signals, or unverifiable assumptions lower it.)
 ```
 
-(Sections 10-12 of the original brief - style, "skip when unclear", and swing/scalping separation -
-are behavioral rules already baked into the guardrails above, so they don't need their own printed
-section. Keep the numbering as shown.)
+(Sections 11-12 of the original brief - style and "skip when unclear" - are behavioral rules
+already baked into the guardrails above, so they don't need their own printed section.
+Keep the numbering as shown.)
 
 ## Style
 

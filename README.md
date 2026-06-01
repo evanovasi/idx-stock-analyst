@@ -21,8 +21,9 @@ Saat aktif, skill akan:
 3. **Menghitung skor 5 pilar secara deterministik**:
    Fundamental (30%) · Teknikal (35%) · Smart Money (15%) · Momentum (10%) · Risk/Safety (10%).
 4. **Mengeluarkan laporan terstruktur 14 bagian** — ringkasan eksekutif, breakdown skor,
-   setup **Swing & Scalping terpisah** (entry / stop loss / TP1 / TP2 / R:R / probabilitas),
-   penilaian risiko, sumber, dan disclaimer.
+   **manajemen posisi aktif** (jika user sudah memegang saham), setup **Swing & Scalping terpisah**
+   (entry / stop loss / TP1 / TP2 / R:R / probabilitas / position sizing), penilaian risiko,
+   sumber, dan disclaimer.
 
 Rubrik lengkap ada di [`references/scoring-rubric.md`](references/scoring-rubric.md), termasuk
 **varian bank/financials** untuk emiten perbankan (BBRI, BBCA, BMRI, dll) yang menggantikan
@@ -86,11 +87,20 @@ Tidak perlu perintah khusus — skill mengenali frasa natural. Contoh prompt yan
 - `GOTO 1 bulan layak masuk gak` (cukup ticker + timeframe)
 - Upload screenshot chart / PDF laporan keuangan, lalu tanya `menurutmu gimana?`
 
+**Untuk manajemen posisi aktif** (sudah pegang saham):
+- `BBRI — gw pegang di rata-rata 4.200, 10 lot. Hold atau jual?`
+- `CUAN floating loss 8%, cut loss atau average down?`
+- `TLKM — masuk di 3.500, sekarang 3.900. Ambil profit atau tahan?`
+- Dengan position sizing: `ANTM modal 20 juta, risk 2% per trade, harga rata-rata 1.650 (5 lot) — lanjut atau keluar?`
+
 **Tips presisi:**
 - Sertakan **screenshot chart harian** → indikator teknikal dipakai data nyata, bukan estimasi.
 - Sertakan **PDF laporan keuangan** → angka fundamental presisi (revenue, OCF, leverage, dll).
 - Kalau cuma kasih ticker, skill jalan dalam mode **Hybrid**: cari harga/berita terbaru sendiri,
   isi sisanya dengan asumsi yang ditandai jelas (FX, dll).
+- Untuk posisi aktif: sebutkan **harga rata-rata beli + jumlah lot** → skill analisis "hold/tambah/
+  keluar" spesifik ke posisimu, bukan setup entry teoretis. Tambahkan modal + toleransi rugi untuk
+  mendapat perhitungan lot optimal.
 
 **Yang TIDAK ditangani skill ini** (by design, supaya tidak over-trigger):
 - Penjelasan konsep umum (`apa itu RSI`, `beda swing vs scalping`)
@@ -121,6 +131,9 @@ Rumus: `Final = 0.30·F + 0.35·T + 0.15·SM + 0.10·M + 0.10·RS`
   katalis jual terjadwal (mis. delisting MSCI) → default **SKIP / WAIT**.
 - **Swing dan Scalping selalu dipisah** (entry, stop, time horizon berbeda).
 - Setiap setup wajib punya entry, stop, TP1/TP2, R:R yang dihitung, dan probabilitas keberhasilan.
+- **Posisi aktif mengubah pertanyaan utama** — jika user sudah pegang saham, skill menjawab
+  "tahan/tambah/keluar" berdasarkan harga rata-rata user, bukan entry teoretis. Score SELL + floating
+  profit → rekomendasi profit taking; score SELL + floating loss → cut loss dengan level spesifik.
 - **Bukan nasihat keuangan berlisensi** — disclaimer otomatis disertakan di tiap output.
 
 ---
